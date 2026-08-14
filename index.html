@@ -278,8 +278,8 @@
   <nav class="commands" id="commands" hidden>
     <button data-cmd="whoami">whoami</button>
     <button data-cmd="berufserfahrung">berufserfahrung</button>
-    <button data-cmd="skills">skills</button>
     <button data-cmd="ausbildung">ausbildung</button>
+    <button data-cmd="skills">skills</button>
     <button data-cmd="kontakt">kontakt</button>
   </nav>
 
@@ -290,7 +290,7 @@
     <div class="welcome-text">
       <p class="hero-name">Hallo, ich bin Mathias.</p>
       <div class="hero-divider"></div>
-      <p class="welcome-lede">Dieser Lebenslauf ist als kleines Terminal aufgebaut: kein Scrollen durch Fließtext, sondern Befehle zum Anklicken. Oben findest du die Navigation — <code>whoami</code>, <code>berufserfahrung</code>, <code>skills</code>, <code>ausbildung</code> und <code>kontakt</code> — darüber kannst du dich frei durch die Stationen klicken. Am besten startest du bei <code>whoami</code>.</p>
+      <p class="welcome-lede">Dieser Lebenslauf ist als kleines Terminal aufgebaut: kein Scrollen durch Fließtext, sondern Befehle zum Anklicken. Oben findest du die Navigation — <code>whoami</code>, <code>berufserfahrung</code>, <code>ausbildung</code>, <code>skills</code> und <code>kontakt</code> — darüber kannst du dich frei durch die Stationen klicken. Am besten startest du bei <code>whoami</code>.</p>
       <button class="cta-button" id="start-btn">$ ./whoami starten</button>
     </div>
   </div>
@@ -341,7 +341,7 @@ const content = {
     <p class="hero-role">Chapter Lead Digital Collaboration &amp; Support · ista SE</p>
     <div class="hero-divider"></div>
     <div class="entry">
-      <p>Ich führe disziplinarisch und fachlich ein 15-köpfiges, auf Polen und Deutschland verteiltes Team in einer agilen Organisation.</p>
+      <p>Ich führe disziplinarisch und fachlich ein 15-köpfiges, auf Polen und Deutschland verteiltes Team — mit einem modernen, agilen Führungsverständnis: Ich lebe agile Prinzipien vor, statt sie nur zu predigen, fühle mich in Scrum zuhause und verstehe meine Rolle als Führungskraft vor allem darin, Mitarbeitende zu befähigen, sich bestmöglich zu entwickeln.</p>
     </div>
     <h3>Vielseitigkeit</h3>
     <div class="entry">
@@ -349,7 +349,7 @@ const content = {
       <ul>
         <li><strong>Collaboration-Software, breiter als Microsoft 365:</strong> Ich verantworte Microsoft&nbsp;365 (Teams, SharePoint, Copilot, Intune), Atlassian Jira Service Desk &amp; Confluence sowie Dokumentations- und Wiki-Tooling — inklusive Rollout-Erfahrung für über 6.000 Mitarbeitende in 20 Landesorganisationen.</li>
         <li><strong>Requirements Engineering:</strong> Ich betreibe kontinuierliches Anforderungs- und Feature-Management, priorisiere nach Nutzerwert/Business Value und stimme mich mit Senior Leadership, C-Level, Betriebsrat, Datenschutz und Fachabteilungen ab.</li>
-        <li><strong>Führung mit Substanz:</strong> Ich übernehme People Management, Coaching und Recruiting und steuere agile Planungsprozesse nach OKRs — erprobt sowohl in der fachlichen Begleitung einer Transformation als auch in voller disziplinarischer Verantwortung.</li>
+        <li><strong>Moderne, agile Führung:</strong> Als junge, moderne Führungskraft moderiere ich OKR-Prozesse, arbeite nach Scrum-Prinzipien und verstehe People Management vor allem als Befähigung — mit Coaching, Recruiting und gezielter Entwicklung, damit mein Team sein volles Potenzial entfalten kann.</li>
       </ul>
     </div>
   `,
@@ -368,10 +368,10 @@ const content = {
               <div class="role">Chapter Lead Digital Collaboration &amp; Support</div>
               <div class="meta">seit 12/2023</div>
               <ul>
-                <li>Disziplinarische und fachliche Führung eines 15-köpfigen, auf Polen und Deutschland verteilten Teams</li>
+                <li>Disziplinarische und fachliche Führung eines 15-köpfigen, auf Polen und Deutschland verteilten Teams — mit modernem, agilem Führungsverständnis</li>
                 <li>Standards, Richtlinien und Chapter-Identität für „Digital Kollaboration &amp; Support“</li>
-                <li>People Management: Weiterentwicklung, Coaching, Recruiting neuer Teammitglieder</li>
-                <li>Koordination agiler Planungsprozesse, Priorisierung nach OKRs</li>
+                <li>People Management als Befähigung: individuelle Weiterentwicklung, Coaching und Recruiting, damit Mitarbeitende ihr Potenzial bestmöglich entfalten</li>
+                <li>Moderation agiler Planungsprozesse nach Scrum-Prinzipien, Priorisierung nach OKRs</li>
                 <li>Strategie- und Produktverantwortung: Collaboration-Tools, Endpoint Management (macOS/Windows/Azure VDI), AI &amp; Agent Governance, Microsoft 365, Atlassian Support, Agile Planning &amp; Wiki-Tooling</li>
                 <li>Steuerung von Change Management bei unternehmensweiten, internationalen Software-Rollouts</li>
                 <li>Regelmäßiger Austausch mit Senior Leadership, C-Level und Betriebsrat; enge Abstimmung mit IT-Fachabteilungen, Datenschutz, Audit und Information Security</li>
@@ -448,24 +448,6 @@ const content = {
       </div>
     </div>
   `,
-  skills: `
-    <h2>$ ls -la skills/</h2>
-    <h3>Collaboration &amp; Produkt</h3>
-    ${skillRow('Microsoft 365 (Teams, SharePoint, Copilot, Intune)', 'Experte', 5)}
-    ${skillRow('Requirements Engineering &amp; Anforderungsmanagement', 'Sehr erfahren', 4)}
-    ${skillRow('Atlassian Jira Service Desk / Confluence', 'Sehr erfahren', 4)}
-    ${skillRow('Webdesign/CMS (TYPO3, WordPress)', 'Fortgeschritten', 3)}
-    <h3>Führung &amp; Methodik</h3>
-    ${skillRow('Disziplinarische &amp; fachliche Führung', 'Experte', 5)}
-    ${skillRow('Scrum / Agile Planung (PSM I, OKRs)', 'Sehr erfahren', 4)}
-    ${skillRow('KI-Tools (Claude AI &amp; Code, ChatGPT)', 'Fortgeschritten', 3)}
-    <h3>Sprachen</h3>
-    <div class="tag-row">
-      <span>Deutsch — Muttersprache</span>
-      <span>Englisch — verhandlungssicher (C1)</span>
-      <span>Französisch — Grundkenntnisse (A2)</span>
-    </div>
-  `,
   ausbildung: `
     <h2>$ cat ausbildung.txt</h2>
     <h3>Weiterbildung</h3>
@@ -503,6 +485,24 @@ const content = {
       <div class="meta">Nicolaus-Cusanus-Gymnasium, Bergisch Gladbach · 2001–2010</div>
     </div>
   `,
+  skills: `
+    <h2>$ ls -la skills/</h2>
+    <h3>Collaboration &amp; Produkt</h3>
+    ${skillRow('Microsoft 365 (Teams, SharePoint, Copilot, Intune)', 'Experte', 5)}
+    ${skillRow('Requirements Engineering &amp; Anforderungsmanagement', 'Sehr erfahren', 4)}
+    ${skillRow('Atlassian Jira Service Desk / Confluence', 'Sehr erfahren', 4)}
+    ${skillRow('Webdesign/CMS (TYPO3, WordPress)', 'Fortgeschritten', 3)}
+    <h3>Führung &amp; Methodik</h3>
+    ${skillRow('Agile &amp; disziplinarische Führung', 'Experte', 5)}
+    ${skillRow('Scrum (PSM I) &amp; agile Planung nach OKRs', 'Sehr erfahren', 4)}
+    ${skillRow('KI-Tools (Claude AI &amp; Code, ChatGPT)', 'Fortgeschritten', 3)}
+    <h3>Sprachen</h3>
+    <div class="tag-row">
+      <span>Deutsch — Muttersprache</span>
+      <span>Englisch — verhandlungssicher (C1)</span>
+      <span>Französisch — Grundkenntnisse (A2)</span>
+    </div>
+  `,
   kontakt: `
     <h2>$ cat kontakt.txt</h2>
     <p class="contact-line"><span class="label">Adresse</span>Iltisstr. 154, 50825 Köln</p>
@@ -514,7 +514,7 @@ const content = {
   `
 };
 
-const order = ['whoami','berufserfahrung','skills','ausbildung','kontakt'];
+const order = ['whoami','berufserfahrung','ausbildung','skills','kontakt'];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function typeLine(el, text, speed, done){
