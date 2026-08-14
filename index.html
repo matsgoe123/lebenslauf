@@ -87,7 +87,8 @@
 
   #output{min-height:340px;}
   #output h2{
-    display:inline-block;
+    display:block;
+    width:fit-content;
     font-family:'Press Start 2P', monospace;
     font-size:13px; font-weight:400;
     letter-spacing:0.5px;
@@ -276,7 +277,7 @@
 
   <nav class="commands" id="commands" hidden>
     <button data-cmd="whoami">whoami</button>
-    <button data-cmd="erfahrung">erfahrung</button>
+    <button data-cmd="berufserfahrung">berufserfahrung</button>
     <button data-cmd="skills">skills</button>
     <button data-cmd="ausbildung">ausbildung</button>
     <button data-cmd="kontakt">kontakt</button>
@@ -289,7 +290,7 @@
     <div class="welcome-text">
       <p class="hero-name">Hallo, ich bin Mathias.</p>
       <div class="hero-divider"></div>
-      <p class="welcome-lede">Dieser Lebenslauf ist als kleines Terminal aufgebaut: kein Scrollen durch Fließtext, sondern Befehle zum Anklicken. Oben findest du die Navigation — <code>whoami</code>, <code>erfahrung</code>, <code>skills</code>, <code>ausbildung</code> und <code>kontakt</code> — darüber kannst du dich frei durch die Stationen klicken. Am besten startest du bei <code>whoami</code>.</p>
+      <p class="welcome-lede">Dieser Lebenslauf ist als kleines Terminal aufgebaut: kein Scrollen durch Fließtext, sondern Befehle zum Anklicken. Oben findest du die Navigation — <code>whoami</code>, <code>berufserfahrung</code>, <code>skills</code>, <code>ausbildung</code> und <code>kontakt</code> — darüber kannst du dich frei durch die Stationen klicken. Am besten startest du bei <code>whoami</code>.</p>
       <button class="cta-button" id="start-btn">$ ./whoami starten</button>
     </div>
   </div>
@@ -340,20 +341,20 @@ const content = {
     <p class="hero-role">Chapter Lead Digital Collaboration &amp; Support · ista SE</p>
     <div class="hero-divider"></div>
     <div class="entry">
-      <p>Disziplinarische und fachliche Führung eines 15-köpfigen, auf Polen und Deutschland verteilten Teams in einer agilen Organisation.</p>
+      <p>Ich führe disziplinarisch und fachlich ein 15-köpfiges, auf Polen und Deutschland verteiltes Team in einer agilen Organisation.</p>
     </div>
     <h3>Vielseitigkeit</h3>
     <div class="entry">
-      <p>Der rote Faden: von der Ausbildung zum Mediengestalter über Marketing und Projektmanagement bis zur strategischen Produkt- und Führungsverantwortung im Digital Workplace. Das zeigt sich heute in drei Kompetenzfeldern:</p>
+      <p>Mein roter Faden: von der Ausbildung zum Mediengestalter über Marketing und Projektmanagement bis zur strategischen Produkt- und Führungsverantwortung im Digital Workplace. Heute bringe ich das in drei Kompetenzfeldern zusammen:</p>
       <ul>
-        <li><strong>Collaboration-Software, breiter als Microsoft 365:</strong> Produktverantwortung für Microsoft&nbsp;365 (Teams, SharePoint, Copilot, Intune), Atlassian Jira Service Desk &amp; Confluence sowie Dokumentations- und Wiki-Tooling — inklusive Rollout-Erfahrung für über 6.000 Mitarbeitende in 20 Landesorganisationen.</li>
-        <li><strong>Requirements Engineering:</strong> Kontinuierliches Anforderungs- und Feature-Management, Priorisierung nach Nutzerwert/Business Value, Stakeholdermanagement mit Senior Leadership, C-Level, Betriebsrat, Datenschutz und Fachabteilungen.</li>
-        <li><strong>Führung mit Substanz:</strong> People Management, Coaching, Recruiting sowie Steuerung agiler Planungsprozesse nach OKRs — erprobt sowohl in der fachlichen Begleitung einer Transformation als auch in voller disziplinarischer Verantwortung.</li>
+        <li><strong>Collaboration-Software, breiter als Microsoft 365:</strong> Ich verantworte Microsoft&nbsp;365 (Teams, SharePoint, Copilot, Intune), Atlassian Jira Service Desk &amp; Confluence sowie Dokumentations- und Wiki-Tooling — inklusive Rollout-Erfahrung für über 6.000 Mitarbeitende in 20 Landesorganisationen.</li>
+        <li><strong>Requirements Engineering:</strong> Ich betreibe kontinuierliches Anforderungs- und Feature-Management, priorisiere nach Nutzerwert/Business Value und stimme mich mit Senior Leadership, C-Level, Betriebsrat, Datenschutz und Fachabteilungen ab.</li>
+        <li><strong>Führung mit Substanz:</strong> Ich übernehme People Management, Coaching und Recruiting und steuere agile Planungsprozesse nach OKRs — erprobt sowohl in der fachlichen Begleitung einer Transformation als auch in voller disziplinarischer Verantwortung.</li>
       </ul>
     </div>
   `,
-  erfahrung: `
-    <h2>$ cat erfahrung.log</h2>
+  berufserfahrung: `
+    <h2>$ cat berufserfahrung.log</h2>
     <div class="accordion">
       <div class="employer-group" data-employer="ista">
         <button class="employer-header" aria-expanded="false">
@@ -467,32 +468,39 @@ const content = {
   `,
   ausbildung: `
     <h2>$ cat ausbildung.txt</h2>
-    <h3>Studium</h3>
+    <h3>Weiterbildung</h3>
     <div class="entry">
-      <div class="role">Bachelor of Arts, Marketing &amp; Digitale Medien</div>
-      <div class="meta">FOM Hochschule, Düsseldorf · 2018–2021</div>
+      <div class="role">Internes Leadership Programm</div>
+      <div class="meta">ista SE · 2023–2026</div>
+    </div>
+    <div class="entry">
+      <div class="role">Professional Scrum Master I (PSM I)</div>
+      <div class="meta">2025</div>
+    </div>
+    <div class="entry">
+      <div class="role">Product Manager Nanodegree</div>
+      <div class="meta">Udacity · 2021</div>
+    </div>
+    <div class="entry">
+      <div class="role">Online Marketing Manager</div>
+      <div class="meta">IHK · 2017</div>
     </div>
     <h3>Ausbildung</h3>
     <div class="entry">
-      <div class="role">Mediengestalter Digital- &amp; Printmedien</div>
-      <div class="meta">it works design GmbH / Berufskolleg Kartäuserwall, Köln · 08/2011–01/2014</div>
+      <div class="role">Bachelor of Arts, Marketing &amp; Digitale Medien</div>
+      <div class="meta">FOM Hochschule, Düsseldorf · 2018–2021</div>
     </div>
     <div class="entry">
       <div class="role">Medienfachwirt — Digitale Kommunikation und Medien/Multimedia</div>
       <div class="meta">IHK, Düsseldorf · 2016–2018</div>
     </div>
     <div class="entry">
+      <div class="role">Mediengestalter Digital- &amp; Printmedien</div>
+      <div class="meta">it works design GmbH / Berufskolleg Kartäuserwall, Köln · 08/2011–01/2014</div>
+    </div>
+    <div class="entry">
       <div class="role">Abitur</div>
       <div class="meta">Nicolaus-Cusanus-Gymnasium, Bergisch Gladbach · 2001–2010</div>
-    </div>
-    <h3>Weiterbildung</h3>
-    <div class="entry">
-      <div class="tag-row">
-        <span>Internes Leadership Programm, ista SE — 2023–2026</span>
-        <span>Professional Scrum Master I (PSM I) — 2025</span>
-        <span>Product Manager Nanodegree, Udacity — 2021</span>
-        <span>Online Marketing Manager, IHK — 2017</span>
-      </div>
     </div>
   `,
   kontakt: `
@@ -506,7 +514,7 @@ const content = {
   `
 };
 
-const order = ['whoami','erfahrung','skills','ausbildung','kontakt'];
+const order = ['whoami','berufserfahrung','skills','ausbildung','kontakt'];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function typeLine(el, text, speed, done){
