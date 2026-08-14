@@ -87,9 +87,9 @@
 
   #output{
     overflow:hidden;
-    transition:max-height 0.22s ease;
+    transition:max-height 0.48s cubic-bezier(0.65,0,0.35,1);
   }
-  .output-body{opacity:0; transition:opacity 0.2s ease;}
+  .output-body{opacity:0; transition:opacity 0.45s ease-out;}
   .output-body.is-visible{opacity:1;}
   @media (prefers-reduced-motion: reduce){
     #output{transition:none;}
@@ -550,18 +550,35 @@ function runBoot(){
   next();
 }
 
-function waitTransition(el, prop, timeoutMs, cb){
-  const handler = (e) => {
-    if(e.propertyName !== prop) return;
-    el.removeEventListener('transitionend', handler);
-    clearTimeout(fallback);
-    cb();
-  };
-  const fallback = setTimeout(() => { el.removeEventListener('transitionend', handler); cb(); }, timeoutMs);
-  el.addEventListener('transitionend', handler);
+function delay(ms){
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function setActive(cmd){
+function waitTransition(el, prop, timeoutMs){
+  return new Promise(resolve => {
+    const handler = (e) => {
+      if(e.propertyName !== prop) return;
+      el.removeEventListener('transitionend', handler);
+      clearTimeout(fallback);
+      resolve();
+    };
+    const fallback = setTimeout(() => { el.removeEventListener('transitionend', handler); resolve(); }, timeoutMs);
+    el.addEventListener('transitionend', handler);
+  });
+}
+
+function typeLineAsync(el, text, speed){
+  return new Promise(resolve => typeLine(el, text, speed, resolve));
+}
+
+const COLLAPSE_MS = 480;
+const EXPAND_MS = 480;
+const PAUSE_AFTER_COLLAPSE = 180;
+const PAUSE_BEFORE_TYPE = 220;
+const TYPE_SPEED = 32;
+const PAUSE_BEFORE_BODY = 200;
+
+async function setActive(cmd){
   buttons.forEach(b => b.classList.toggle('active', b.dataset.cmd === cmd));
   const section = content[cmd];
 
@@ -575,22 +592,22 @@ function setActive(cmd){
   output.style.maxHeight = startHeight + 'px';
   output.offsetHeight;
   output.style.maxHeight = '0px';
+  await waitTransition(output, 'max-height', COLLAPSE_MS + 120);
+  await delay(PAUSE_AFTER_COLLAPSE);
 
-  waitTransition(output, 'max-height', 260, () => {
-    output.innerHTML = `<h2></h2><div class="output-body">${section.body}</div>`;
-    const header = output.querySelector('h2');
-    const body = output.querySelector('.output-body');
+  output.innerHTML = `<h2></h2><div class="output-body">${section.body}</div>`;
+  const header = output.querySelector('h2');
+  const body = output.querySelector('.output-body');
 
-    const targetHeight = output.scrollHeight;
-    output.style.maxHeight = targetHeight + 'px';
+  const targetHeight = output.scrollHeight;
+  output.style.maxHeight = targetHeight + 'px';
+  await waitTransition(output, 'max-height', EXPAND_MS + 120);
+  output.style.maxHeight = 'none';
+  await delay(PAUSE_BEFORE_TYPE);
 
-    waitTransition(output, 'max-height', 260, () => {
-      output.style.maxHeight = 'none';
-      typeLine(header, section.header, 16, () => {
-        body.classList.add('is-visible');
-      });
-    });
-  });
+  await typeLineAsync(header, section.header, TYPE_SPEED);
+  await delay(PAUSE_BEFORE_BODY);
+  body.classList.add('is-visible');
 }
 
 function enterSection(cmd){
