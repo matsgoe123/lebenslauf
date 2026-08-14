@@ -85,7 +85,17 @@
   .text-link:hover,
   .text-link:focus-visible{animation:blink-outline 0.75s steps(1) infinite; text-decoration:none;}
 
-  #output{min-height:340px;}
+  #output{
+    min-height:340px;
+    transition:opacity 0.18s ease, transform 0.18s ease;
+  }
+  #output.is-fading{opacity:0; transform:translateY(6px);}
+  @media (prefers-reduced-motion: reduce){
+    #output{transition:none;}
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root){animation-duration:0.18s;}
+
   #output h2{
     display:block;
     width:fit-content;
@@ -545,9 +555,29 @@ function runBoot(){
   next();
 }
 
-function setActive(cmd){
+function renderOutput(cmd){
   buttons.forEach(b => b.classList.toggle('active', b.dataset.cmd === cmd));
   output.innerHTML = content[cmd];
+}
+
+function setActive(cmd){
+  if(reduceMotion){
+    renderOutput(cmd);
+    return;
+  }
+  if(document.startViewTransition){
+    document.startViewTransition(() => renderOutput(cmd));
+    return;
+  }
+  output.classList.add('is-fading');
+  const swap = () => {
+    output.removeEventListener('transitionend', swap);
+    clearTimeout(fallback);
+    renderOutput(cmd);
+    requestAnimationFrame(() => requestAnimationFrame(() => output.classList.remove('is-fading')));
+  };
+  const fallback = setTimeout(swap, 220);
+  output.addEventListener('transitionend', swap, {once:true});
 }
 
 function enterSection(cmd){
