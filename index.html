@@ -86,15 +86,15 @@
   .text-link:focus-visible{animation:blink-outline 0.75s steps(1) infinite; text-decoration:none;}
 
   #output{
-    min-height:340px;
-    transition:opacity 0.18s ease, transform 0.18s ease;
+    overflow:hidden;
+    transition:max-height 0.22s ease;
   }
-  #output.is-fading{opacity:0; transform:translateY(6px);}
+  .output-body{opacity:0; transition:opacity 0.2s ease;}
+  .output-body.is-visible{opacity:1;}
   @media (prefers-reduced-motion: reduce){
     #output{transition:none;}
+    .output-body{transition:none; opacity:1;}
   }
-  ::view-transition-old(root),
-  ::view-transition-new(root){animation-duration:0.18s;}
 
   #output h2{
     display:block;
@@ -345,8 +345,7 @@ const footer = document.getElementById('footer');
 const buttons = document.querySelectorAll('nav.commands button');
 
 const content = {
-  whoami: `
-    <h2>$ whoami</h2>
+  whoami: { header: '$ whoami', body: `
     <p class="hero-name">Mathias Goerrings</p>
     <p class="hero-role">Chapter Lead Digital Collaboration &amp; Support · ista SE</p>
     <div class="hero-divider"></div>
@@ -362,9 +361,8 @@ const content = {
         <li><strong>Moderne, agile Führung:</strong> Als junge, moderne Führungskraft moderiere ich OKR-Prozesse, arbeite nach Scrum-Prinzipien und verstehe People Management vor allem als Befähigung — mit Coaching, Recruiting und gezielter Entwicklung, damit mein Team sein volles Potenzial entfalten kann.</li>
       </ul>
     </div>
-  `,
-  berufserfahrung: `
-    <h2>$ cat berufserfahrung.log</h2>
+  ` },
+  berufserfahrung: { header: '$ cat berufserfahrung.log', body: `
     <div class="accordion">
       <div class="employer-group" data-employer="ista">
         <button class="employer-header" aria-expanded="false">
@@ -457,9 +455,8 @@ const content = {
         </div>
       </div>
     </div>
-  `,
-  ausbildung: `
-    <h2>$ cat ausbildung.txt</h2>
+  ` },
+  ausbildung: { header: '$ cat ausbildung.txt', body: `
     <h3>Weiterbildung</h3>
     <div class="entry">
       <div class="role">Internes Leadership Programm</div>
@@ -494,9 +491,8 @@ const content = {
       <div class="role">Abitur</div>
       <div class="meta">Nicolaus-Cusanus-Gymnasium, Bergisch Gladbach · 2001–2010</div>
     </div>
-  `,
-  skills: `
-    <h2>$ ls -la skills/</h2>
+  ` },
+  skills: { header: '$ ls -la skills/', body: `
     <h3>Tools &amp; Software</h3>
     ${skillRow('Microsoft 365 (Teams, SharePoint, Copilot, Intune)', 'Experte', 5)}
     ${skillRow('Atlassian Jira Service Desk / Confluence', 'Sehr erfahren', 4)}
@@ -512,16 +508,15 @@ const content = {
     ${skillRow('Deutsch', 'Muttersprache', 5)}
     ${skillRow('Englisch', 'Verhandlungssicher (C1)', 4)}
     ${skillRow('Französisch', 'Grundkenntnisse (A2)', 2)}
-  `,
-  kontakt: `
-    <h2>$ cat kontakt.txt</h2>
+  ` },
+  kontakt: { header: '$ cat kontakt.txt', body: `
     <p class="contact-line"><span class="label">Adresse</span>Iltisstr. 154, 50825 Köln</p>
     <p class="contact-line"><span class="label">Telefon</span>0173 69 10 370</p>
     <p class="contact-line"><span class="label">E-Mail</span><a href="mailto:mathias.goerrings@icloud.com">mathias.goerrings@icloud.com</a></p>
     <p class="contact-line"><span class="label">LinkedIn</span><a href="https://linkedin.com/in/mathiasgoerrings-b950a3a8" target="_blank" rel="noopener">linkedin.com/in/mathiasgoerrings-b950a3a8</a></p>
     <div class="pixel-divider"></div>
     <p class="contact-line"><a href="./lebenslauf-mathias-goerrings.pdf" download>→ Klassische PDF-Version herunterladen</a></p>
-  `
+  ` }
 };
 
 const order = ['whoami','berufserfahrung','ausbildung','skills','kontakt'];
@@ -555,29 +550,47 @@ function runBoot(){
   next();
 }
 
-function renderOutput(cmd){
-  buttons.forEach(b => b.classList.toggle('active', b.dataset.cmd === cmd));
-  output.innerHTML = content[cmd];
+function waitTransition(el, prop, timeoutMs, cb){
+  const handler = (e) => {
+    if(e.propertyName !== prop) return;
+    el.removeEventListener('transitionend', handler);
+    clearTimeout(fallback);
+    cb();
+  };
+  const fallback = setTimeout(() => { el.removeEventListener('transitionend', handler); cb(); }, timeoutMs);
+  el.addEventListener('transitionend', handler);
 }
 
 function setActive(cmd){
+  buttons.forEach(b => b.classList.toggle('active', b.dataset.cmd === cmd));
+  const section = content[cmd];
+
   if(reduceMotion){
-    renderOutput(cmd);
+    output.style.maxHeight = 'none';
+    output.innerHTML = `<h2>${section.header}</h2>${section.body}`;
     return;
   }
-  if(document.startViewTransition){
-    document.startViewTransition(() => renderOutput(cmd));
-    return;
-  }
-  output.classList.add('is-fading');
-  const swap = () => {
-    output.removeEventListener('transitionend', swap);
-    clearTimeout(fallback);
-    renderOutput(cmd);
-    requestAnimationFrame(() => requestAnimationFrame(() => output.classList.remove('is-fading')));
-  };
-  const fallback = setTimeout(swap, 220);
-  output.addEventListener('transitionend', swap, {once:true});
+
+  const startHeight = output.scrollHeight;
+  output.style.maxHeight = startHeight + 'px';
+  output.offsetHeight;
+  output.style.maxHeight = '0px';
+
+  waitTransition(output, 'max-height', 260, () => {
+    output.innerHTML = `<h2></h2><div class="output-body">${section.body}</div>`;
+    const header = output.querySelector('h2');
+    const body = output.querySelector('.output-body');
+
+    const targetHeight = output.scrollHeight;
+    output.style.maxHeight = targetHeight + 'px';
+
+    waitTransition(output, 'max-height', 260, () => {
+      output.style.maxHeight = 'none';
+      typeLine(header, section.header, 16, () => {
+        body.classList.add('is-visible');
+      });
+    });
+  });
 }
 
 function enterSection(cmd){
@@ -596,6 +609,7 @@ backLink.addEventListener('click', (e)=>{
   backRow.hidden = true;
   output.hidden = true;
   output.innerHTML = '';
+  output.style.maxHeight = '';
   buttons.forEach(b => b.classList.remove('active'));
   welcome.hidden = false;
 });
