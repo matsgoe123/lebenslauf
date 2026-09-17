@@ -15,8 +15,6 @@
     --fg-dimmer:#5f6779;
     --accent:#5eead4;
     --accent2:#8b7cf6;
-    --accent3:#f5a962;
-    --danger:#f0715a;
     --grad: linear-gradient(120deg, var(--accent), var(--accent2));
     --radius:18px;
     --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
@@ -47,8 +45,8 @@
   .kicker .dot{width:6px; height:6px; border-radius:50%; background:var(--grad);}
 
   h1{font-size:clamp(30px,4.6vw,54px); line-height:1.08; margin:0 0 16px; font-weight:700; letter-spacing:-.01em;}
-  h2.slide-title{font-size:clamp(24px,3.4vw,38px); margin:0 0 28px; font-weight:700; letter-spacing:-.01em;}
-  .sub{color:var(--fg-dim); font-size:clamp(15px,1.6vw,19px); max-width:62ch; line-height:1.6; margin:0 0 8px;}
+  h2.slide-title{font-size:clamp(24px,3.6vw,40px); margin:0 0 14px; font-weight:700; letter-spacing:-.01em;}
+  .sub{color:var(--fg-dim); font-size:clamp(15px,1.6vw,19px); max-width:66ch; line-height:1.6; margin:0 0 36px;}
 
   .grad-text{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
 
@@ -70,80 +68,25 @@
   .brand-mark span{border-radius:2px; background:var(--bg);}
   .brand-name{font-size:15px; color:var(--fg-dim); letter-spacing:.04em;}
 
-  /* Grid cards */
-  .grid{display:grid; gap:18px; width:100%;}
-  .grid.cols-2{grid-template-columns:1fr 1fr;}
-  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
-  .grid.cols-4{grid-template-columns:repeat(4,1fr);}
-  @media (max-width:900px){.grid.cols-2,.grid.cols-3,.grid.cols-4{grid-template-columns:1fr;}}
-
-  .card{
+  /* Trio — the single content pattern: max three points per slide */
+  .trio{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; width:100%;}
+  @media (max-width:900px){.trio{grid-template-columns:1fr;}}
+  .trio .tile{
     background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:22px 24px;
+    padding:26px 24px;
   }
-  .card h3{margin:0 0 8px; font-size:16.5px; font-weight:700; display:flex; align-items:center; gap:10px;}
-  .card p{margin:0; color:var(--fg-dim); font-size:14.5px; line-height:1.55;}
-  .card .num{
-    font-size:12px; font-weight:700; color:var(--bg); background:var(--grad);
-    width:22px; height:22px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
-    flex-shrink:0;
+  .trio .tile .n{
+    width:30px; height:30px; border-radius:9px; background:var(--grad);
+    color:var(--bg); font-weight:800; font-size:14px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
   }
-
-  /* Timeline */
-  .timeline{display:flex; gap:0; width:100%; margin-top:10px;}
-  .phase{flex:1; position:relative; padding:0 16px 0 0;}
-  .phase:not(:last-child){border-right:1px solid var(--line);}
-  .phase-inner{padding-right:20px;}
-  .phase .tag{
-    display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--bg); background:var(--accent); padding:4px 10px; border-radius:999px; margin-bottom:12px;
-  }
-  .phase:nth-child(2) .tag{background:var(--accent2); color:#fff;}
-  .phase:nth-child(3) .tag{background:var(--accent3);}
-  .phase:nth-child(4) .tag{background:#f0715a; color:#fff;}
-  .phase h4{margin:0 0 8px; font-size:17px; font-weight:700;}
-  .phase ul{margin:0; padding:0; list-style:none;}
-  .phase li{color:var(--fg-dim); font-size:13.5px; line-height:1.5; margin-bottom:7px; padding-left:16px; position:relative;}
-  .phase li::before{content:"—"; position:absolute; left:0; color:var(--fg-dimmer);}
-  @media (max-width:900px){.timeline{flex-direction:column; gap:24px;} .phase{border-right:none; border-left:2px solid var(--line); padding-left:18px;} .phase-inner{padding-right:0;}}
-
-  /* Stakeholder map */
-  .stake-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
-  @media (max-width:900px){.stake-grid{grid-template-columns:1fr;}}
-  .stake{
-    background:var(--bg-soft); border:1px solid var(--line); border-radius:14px; padding:18px 20px;
-  }
-  .stake .role{font-weight:700; font-size:14.5px; margin-bottom:4px;}
-  .stake .why{color:var(--fg-dim); font-size:13px; line-height:1.5;}
-  .stake .badge{
-    font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--fg-dimmer); border:1px solid var(--line); border-radius:999px; padding:2px 8px; margin-bottom:10px; display:inline-block;
-  }
-
-  /* Risk table */
-  table{width:100%; border-collapse:collapse; font-size:14px;}
-  th{text-align:left; color:var(--fg-dimmer); font-weight:600; font-size:12px; letter-spacing:.06em; text-transform:uppercase; padding:0 14px 10px; border-bottom:1px solid var(--line);}
-  td{padding:14px; border-bottom:1px solid var(--line); color:var(--fg-dim); vertical-align:top;}
-  td:first-child{color:var(--fg); font-weight:600;}
-  .sev{display:inline-flex; align-items:center; gap:6px; font-weight:700; font-size:12.5px;}
-  .sev::before{content:""; width:8px; height:8px; border-radius:50%;}
-  .sev.high::before{background:var(--danger);}
-  .sev.mid::before{background:var(--accent3);}
-  .sev.low::before{background:var(--accent);}
-
-  /* KPI */
-  .kpi-row{display:flex; gap:16px; flex-wrap:wrap;}
-  .kpi{flex:1; min-width:200px; background:var(--bg-soft); border:1px solid var(--line); border-radius:14px; padding:20px;}
-  .kpi .val{font-size:30px; font-weight:800; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
-  .kpi .lbl{color:var(--fg-dim); font-size:13px; margin-top:6px;}
-
-  ul.plain{margin:0; padding:0; list-style:none;}
-  ul.plain li{padding-left:22px; position:relative; margin-bottom:12px; color:var(--fg-dim); font-size:15px; line-height:1.55;}
-  ul.plain li::before{content:"›"; position:absolute; left:0; color:var(--accent); font-weight:700;}
-  ul.plain b{color:var(--fg);}
+  .trio .tile h3{margin:0 0 8px; font-size:17px; font-weight:700; letter-spacing:-.005em;}
+  .trio .tile p{margin:0; color:var(--fg-dim); font-size:14.5px; line-height:1.55;}
 
   .closing{text-align:center;}
   .closing .content{align-items:center;}
+  .closing .trio{margin-top:8px;}
+  .closing .trio .tile{text-align:left;}
 
   /* chrome */
   .chrome{position:fixed; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:space-between; padding:14px clamp(24px,7vw,120px); z-index:10; pointer-events:none;}
@@ -182,232 +125,77 @@
         <div class="brand-name">Microsoft 365 · Bookings</div>
       </div>
       <h1>Rollout von<br><span class="grad-text">Microsoft Bookings</span></h1>
-      <p class="sub">Ein strukturierter Fahrplan von der Bedarfsklärung bis zur unternehmensweiten Adoption — vorgestellt aus Sicht eines M365&nbsp;Produktmanagers.</p>
+      <p class="sub" style="margin:0 auto;">Ein strukturierter Fahrplan von der Bedarfsklärung bis zur Adoption — vorgestellt aus Sicht eines M365&nbsp;Produktmanagers.</p>
       <div class="role-pill">Mathias Goerrings · Bewerbungsgespräch, Vorbereitung Zweitrunde</div>
     </div>
   </section>
 
-  <!-- 2: Agenda -->
+  <!-- 2: Ausgangslage & Ziel -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>Agenda</div>
-    <h2 class="slide-title">Wie ich einen Bookings-Rollout angehen würde</h2>
+    <div class="kicker"><span class="dot"></span>Ausgangslage &amp; Ziel</div>
+    <h2 class="slide-title">Warum Bookings — und was Erfolg bedeutet</h2>
+    <p class="sub">Der Rollout beginnt mit dem Bedarf, nicht mit dem Tool.</p>
     <div class="content top">
-      <div class="grid cols-3">
-        <div class="card"><h3><span class="num">1</span>Ausgangslage &amp; Nutzen</h3><p>Warum Bookings, welches Problem löst es, wie sieht der Business Case aus.</p></div>
-        <div class="card"><h3><span class="num">2</span>Zielbild &amp; KPIs</h3><p>Was „erfolgreich" konkret bedeutet — messbar, nicht nur gefühlt.</p></div>
-        <div class="card"><h3><span class="num">3</span>Stakeholder</h3><p>Wer von Anfang an eingebunden werden muss und warum.</p></div>
-        <div class="card"><h3><span class="num">4</span>Phasenplan</h3><p>Discovery → Pilot → Rollout → Adoption, mit klaren Gates.</p></div>
-        <div class="card"><h3><span class="num">5</span>Technik, Security &amp; Compliance</h3><p>Tenant-Setup, Lizenzen, Datenschutz, Schnittstellen.</p></div>
-        <div class="card"><h3><span class="num">6</span>Change &amp; Risiken</h3><p>Kommunikation, Schulung, Adoption-Tracking, Risikomanagement.</p></div>
+      <div class="trio">
+        <div class="tile"><div class="n">1</div><h3>Bedarf zuerst</h3><p>Konkreter Anwendungsfall im Fachbereich klären, bevor über das Tool gesprochen wird.</p></div>
+        <div class="tile"><div class="n">2</div><h3>Business Case</h3><p>Weniger Koordinationsaufwand, weniger No-Shows, echter Self-Service für Kunden &amp; Mitarbeitende.</p></div>
+        <div class="tile"><div class="n">3</div><h3>Erfolg messbar</h3><p>Adoption, Terminaufwand und Zufriedenheit als KPI vor dem Start festlegen — inkl. Baseline.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 3: Ausgangslage -->
+  <!-- 3: Abstimmung im Produktmanager-Team -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>Ausgangslage</div>
-    <h2 class="slide-title">Warum Microsoft Bookings — und für wen?</h2>
+    <div class="kicker"><span class="dot"></span>Abstimmung im Team</div>
+    <h2 class="slide-title">Bookings ist Teamarbeit unter Produktverantwortlichen</h2>
+    <p class="sub">Bei mehreren dedizierten PM/PO je M365-Dienst betrifft Bookings automatisch Nachbar-Produkte — deshalb wird hier am intensivsten abgestimmt.</p>
     <div class="content top">
-      <p class="sub" style="margin-bottom:26px;">Bookings ist kein Selbstzweck. Der erste Schritt ist immer, den konkreten Bedarf zu verstehen, bevor über Rollout gesprochen wird.</p>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Typische Auslöser</h3>
-          <p>Externe Terminvergabe (Empfang, IT-Support, Beratung, HR-Interviews), Ressourcenbuchung, Ablösung von Excel-Listen oder Telefon-Terminvereinbarung, Kundenerlebnis-Initiativen.</p>
-        </div>
-        <div class="card">
-          <h3>Business Case</h3>
-          <p>Weniger manueller Koordinationsaufwand, kürzere Antwortzeiten für Kunden/Mitarbeitende, weniger No-Shows durch Erinnerungen, Self-Service statt Telefon/E-Mail-Ping-Pong.</p>
-        </div>
-        <div class="card">
-          <h3>Passt es zum Bedarf?</h3>
-          <p>Abgrenzung zu Outlook-Kalender, Teams-Terminplanung oder Drittanbietern (Calendly &amp; Co.) — Bookings punktet vor allem durch native M365-Integration und Lizenzabdeckung.</p>
-        </div>
-        <div class="card">
-          <h3>Meine erste Frage im echten Projekt</h3>
-          <p>„Welcher Bereich hat den Schmerzpunkt zuerst gespürt — und wie sieht dessen Terminprozess heute konkret aus?" Der Rollout startet mit diesem Gespräch, nicht mit der Technik.</p>
-        </div>
+      <div class="trio">
+        <div class="tile"><div class="n">1</div><h3>Peers ab Discovery</h3><p>Produktverantwortliche für Teams, Exchange und SharePoint/OneDrive von Anfang an einbinden, nicht erst zur Umsetzung.</p></div>
+        <div class="tile"><div class="n">2</div><h3>Klare Zuständigkeiten</h3><p>Gemeinsames RACI: wer entscheidet bei Konflikten zwischen den Produktlogiken der einzelnen Dienste?</p></div>
+        <div class="tile"><div class="n">3</div><h3>Fester Sync-Rhythmus</h3><p>Regelmäßiger Abstimmungstermin über die gesamte Rolloutdauer — nicht nur ein einmaliger Kick-off.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 4: Zielbild & KPIs -->
-  <section class="slide">
-    <div class="kicker"><span class="dot"></span>Zielbild</div>
-    <h2 class="slide-title">Erfolg messbar machen, bevor der Rollout beginnt</h2>
-    <div class="content top">
-      <div class="kpi-row" style="margin-bottom:28px;">
-        <div class="kpi"><div class="val">≥80%</div><div class="lbl">Adoption in Pilot-Bereichen nach 6 Wochen</div></div>
-        <div class="kpi"><div class="val">−30%</div><div class="lbl">Manuelle Terminkoordination (E-Mail/Telefon)</div></div>
-        <div class="kpi"><div class="val">&lt;5%</div><div class="lbl">No-Show-Rate durch automatische Erinnerungen</div></div>
-        <div class="kpi"><div class="val">&gt;4/5</div><div class="lbl">Zufriedenheit interner Nutzer (Pulse-Survey)</div></div>
-      </div>
-      <ul class="plain">
-        <li><b>Ziel &amp; Kennzahl gehören zusammen:</b> jedes Ziel bekommt eine Metrik, eine Datenquelle (Bookings-Reports, Helpdesk-Tickets, Umfrage) und einen Verantwortlichen.</li>
-        <li><b>Baseline vor dem Start</b> erheben — sonst lässt sich „Verbesserung" später nicht belegen.</li>
-        <li><b>Executive-Sicht:</b> ein einseitiges KPI-Dashboard, das ich als Produktmanager monatlich an Sponsor und Steering Committee berichte.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 5: Stakeholder -->
-  <section class="slide">
-    <div class="kicker"><span class="dot"></span>Stakeholder</div>
-    <h2 class="slide-title">Wer von Tag eins an am Tisch sitzen muss</h2>
-    <div class="content top">
-      <div class="stake-grid">
-        <div class="stake"><span class="badge">Sponsor</span><div class="role">Fachbereichsleitung</div><div class="why">Priorisierung, Budget, Entscheidung über Pilot-Bereich.</div></div>
-        <div class="stake"><span class="badge">Peer-PM</span><div class="role">Produktverantwortliche Teams / Exchange / SharePoint</div><div class="why">Bookings kreuzt ihre Dienste direkt — daher ab Discovery eingebunden, nicht erst zur Umsetzung. Details siehe nächste Folie.</div></div>
-        <div class="stake"><span class="badge">IT-Betrieb</span><div class="role">Tenant-Administration</div><div class="why">Lizenzverfügbarkeit, App-Freigabe, technisches Onboarding der Buchungsseiten.</div></div>
-        <div class="stake"><span class="badge">Security</span><div class="role">Identity &amp; Access</div><div class="why">Conditional Access, externe Freigaben, Gastzugriff auf Buchungsseiten.</div></div>
-        <div class="stake"><span class="badge">Datenschutz</span><div class="role">DSGVO / DSB</div><div class="why">Verarbeitung von Kunden-/Bewerberdaten, Aufbewahrungsfristen, Auftragsverarbeitung.</div></div>
-        <div class="stake"><span class="badge">Betriebsrat</span><div class="role">Mitbestimmung</div><div class="why">Frühzeitig einbinden, falls Mitarbeitendenverfügbarkeit/-tracking berührt ist.</div></div>
-        <div class="stake"><span class="badge">Endanwender</span><div class="role">Pilot-Team</div><div class="why">Reales Feedback zu Buchungsseite, Erinnerungen, Terminlogik.</div></div>
-        <div class="stake"><span class="badge">Kommunikation</span><div class="role">Interne Kommunikation</div><div class="why">Ankündigung, Erwartungsmanagement, Erfolgsgeschichten.</div></div>
-        <div class="stake"><span class="badge">Support</span><div class="role">Helpdesk / Service Desk</div><div class="why">Erste Anlaufstelle bei Problemen — muss vor Go-Live geschult sein.</div></div>
-        <div class="stake"><span class="badge">Change Champions</span><div class="role">Multiplikatoren pro Team</div><div class="why">Tragen Wissen und Akzeptanz in die Fläche.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6: Produktmanager-Netzwerk -->
-  <section class="slide">
-    <div class="kicker"><span class="dot"></span>Zusammenarbeit</div>
-    <h2 class="slide-title">Früh andocken: Bookings ist kein Solo-Rollout</h2>
-    <div class="content top">
-      <p class="sub" style="margin-bottom:26px;">Bei mehreren dedizierten Produktverantwortlichen je M365-Dienst berührt ein Bookings-Case automatisch „Nachbar-Produkte". Deshalb würde ich Teams-, Exchange- und SharePoint/OneDrive-Verantwortliche bereits in der Discovery-Phase einbinden — nicht erst, wenn die technische Umsetzung ansteht.</p>
-      <div class="grid cols-3" style="margin-bottom:26px;">
-        <div class="card"><h3>Produktverantwortliche Exchange</h3><p>Ressourcen-Postfächer, Kalenderlogik, Verfügbarkeitsabgleich — Bookings baut direkt auf Exchange-Kalendern auf.</p></div>
-        <div class="card"><h3>Produktverantwortliche Teams</h3><p>Virtuelle Termine über Teams-Meetings, Berechtigungen und Governance für Buchungsseiten im Teams-Kontext.</p></div>
-        <div class="card"><h3>Produktverantwortliche SharePoint / OneDrive</h3><p>Ablage von Formularen/Freigabedokumenten im Buchungsprozess, ggf. Listen als Ressourcen- oder Verfügbarkeitsquelle.</p></div>
-      </div>
-      <ul class="plain">
-        <li><b>Warum so früh?</b> Vermeidet Doppelarbeit und widersprüchliche Konfigurationsentscheidungen zwischen den Diensten.</li>
-        <li><b>Klare Schnittstellen statt Grauzonen:</b> wer entscheidet bei Konflikten zwischen Produktlogiken, wird vorab geklärt — nicht erst im Streitfall.</li>
-        <li><b>Konkreter erster Schritt:</b> gemeinsamer Alignment-Termin mit allen drei Produktverantwortlichen in Woche 1, danach ein schlankes RACI für den Case.</li>
-        <li><b>Meine Rolle dabei:</b> Koordinator im Produktverbund — ich treibe den Case, entscheide aber nicht über die Nachbarprodukte hinweg.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 7: Phasenplan -->
+  <!-- 4: Vorgehen -->
   <section class="slide">
     <div class="kicker"><span class="dot"></span>Vorgehen</div>
-    <h2 class="slide-title">Rollout in vier Phasen mit klaren Gates</h2>
+    <h2 class="slide-title">Drei Phasen bis zum Regelbetrieb</h2>
+    <p class="sub">Jede Phase endet mit einem klaren Gate, bevor die nächste beginnt.</p>
     <div class="content top">
-      <div class="timeline">
-        <div class="phase"><div class="phase-inner">
-          <span class="tag">Woche 1–2</span>
-          <h4>Discovery</h4>
-          <ul>
-            <li>Bedarf &amp; Prozesse mit Fachbereich klären</li>
-            <li>Alignment mit Produktverantwortlichen Teams/Exchange/SharePoint</li>
-            <li>Lizenzcheck (M365 Business Standard/Premium, E3/E5)</li>
-            <li>Stakeholder-Map &amp; Sponsor bestätigen</li>
-            <li>Erfolgskriterien &amp; Baseline festlegen</li>
-          </ul>
-        </div></div>
-        <div class="phase"><div class="phase-inner">
-          <span class="tag">Woche 3–4</span>
-          <h4>Setup &amp; Pilot</h4>
-          <ul>
-            <li>Tenant-Konfiguration, Ressourcen-Postfächer, Branding</li>
-            <li>Security- &amp; Datenschutz-Freigabe einholen</li>
-            <li>Pilot mit 1–2 Teams, reale Buchungen</li>
-            <li>Kurzschulung + Feedback-Loop einrichten</li>
-          </ul>
-        </div></div>
-        <div class="phase"><div class="phase-inner">
-          <span class="tag">Woche 5–8</span>
-          <h4>Rollout</h4>
-          <ul>
-            <li>Pilot-Learnings einarbeiten, Prozess nachschärfen</li>
-            <li>Stufenweise Ausweitung nach Bereich/Standort</li>
-            <li>Kommunikationsplan &amp; Change Champions aktiv</li>
-            <li>Support-Team geschult, FAQ &amp; Guides live</li>
-          </ul>
-        </div></div>
-        <div class="phase"><div class="phase-inner">
-          <span class="tag">Ab Woche 9</span>
-          <h4>Adoption &amp; Betrieb</h4>
-          <ul>
-            <li>Nutzungsdaten &amp; KPI-Dashboard laufend auswerten</li>
-            <li>Regelmäßige Retros mit Fachbereichen</li>
-            <li>Roadmap für weitere Teams / Anwendungsfälle</li>
-            <li>Übergabe in den Regelbetrieb (Run)</li>
-          </ul>
-        </div></div>
+      <div class="trio">
+        <div class="tile"><div class="n">1</div><h3>Discovery</h3><p>Bedarf klären, Alignment mit PM/PO-Kolleg:innen, Lizenzcheck, Erfolgskriterien &amp; Baseline festlegen.</p></div>
+        <div class="tile"><div class="n">2</div><h3>Setup &amp; Pilot</h3><p>Technisches Setup, Freigaben einholen, Pilot mit 1–2 Teams, Feedback einsammeln.</p></div>
+        <div class="tile"><div class="n">3</div><h3>Rollout &amp; Adoption</h3><p>Stufenweise Ausweitung, KPI-Tracking, Übergabe in den Regelbetrieb.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 8: Technik & Security -->
+  <!-- 5: Compliance & Mitbestimmung -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>Technische Vorbereitung</div>
-    <h2 class="slide-title">Was vor dem ersten Live-Termin stehen muss</h2>
+    <div class="kicker"><span class="dot"></span>Compliance &amp; Mitbestimmung</div>
+    <h2 class="slide-title">Datenschutz und Betriebsrat gehören an den Start, nicht ans Ende</h2>
+    <p class="sub">Diese Abstimmung läuft parallel zur technischen Vorbereitung — nicht danach.</p>
     <div class="content top">
-      <div class="grid cols-2">
-        <div class="card"><h3>Lizenzierung</h3><p>Bookings ist in Business Standard/Premium sowie E3/E5 enthalten — Verfügbarkeit pro Nutzergruppe früh prüfen, sonst blockiert das den Piloten.</p></div>
-        <div class="card"><h3>Tenant- &amp; App-Konfiguration</h3><p>Ressourcen-Postfächer, Buchungsseiten-Branding, Team-Mitgliedschaften, Freigabe der App im Microsoft&nbsp;365 Admin Center / App-Governance.</p></div>
-        <div class="card"><h3>Identity &amp; Conditional Access</h3><p>Zugriff auf Buchungsseiten für externe Kund:innen (anonym vs. authentifiziert), MFA-Vorgaben, Abstimmung mit Security-Team.</p></div>
-        <div class="card"><h3>Datenschutz &amp; DSGVO</h3><p>Welche personenbezogenen Daten werden erfasst (Name, Kontakt, Anliegen), Aufbewahrungsfristen, ggf. Verzeichnis der Verarbeitungstätigkeiten ergänzen.</p></div>
-        <div class="card"><h3>Integrationen</h3><p>Anbindung an Exchange-Kalender, Teams für virtuelle Termine, ggf. Power Automate für Downstream-Prozesse (CRM, Ticketsystem).</p></div>
-        <div class="card"><h3>Monitoring &amp; Reporting</h3><p>Nutzungsberichte im Admin Center, ergänzt um ein eigenes KPI-Dashboard für Steering-Zwecke.</p></div>
+      <div class="trio">
+        <div class="tile"><div class="n">1</div><h3>Datenschutz (DSB)</h3><p>Datenfelder minimieren, Aufbewahrungsfristen klären, Verzeichnis der Verarbeitungstätigkeiten prüfen.</p></div>
+        <div class="tile"><div class="n">2</div><h3>Betriebsrat</h3><p>Mitbestimmung frühzeitig klären, sobald Verfügbarkeits- oder Leistungsdaten von Mitarbeitenden berührt sind.</p></div>
+        <div class="tile"><div class="n">3</div><h3>IT &amp; Security</h3><p>Lizenzcheck, Tenant-Konfiguration, Zugriffssteuerung für externe Buchende (Conditional Access).</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 9: Change & Kommunikation -->
-  <section class="slide">
-    <div class="kicker"><span class="dot"></span>Change Management</div>
-    <h2 class="slide-title">Adoption entsteht durch Kommunikation, nicht durch Freischaltung</h2>
-    <div class="content top">
-      <ul class="plain">
-        <li><b>Kommunikationsplan mit Timing:</b> Vorab-Ankündigung (Warum &amp; Nutzen), Go-Live-Info, Erinnerungen, Erfolgsgeschichten nach 30 Tagen.</li>
-        <li><b>Rollenbasierte Schulung:</b> kurze Videos/Guides für Endanwender, vertieftes Training für Ressourcenverwalter, Runbook für den Support.</li>
-        <li><b>Change Champions je Team</b> als Multiplikatoren — beantworten Alltagsfragen direkt vor Ort, entlasten den Helpdesk.</li>
-        <li><b>Feedback-Loop von Tag eins:</b> ein einfacher Kanal (Formular/Teams-Kanal), der Pain Points sammelt und in die nächste Rollout-Welle einfließt.</li>
-        <li><b>Erwartungsmanagement:</b> transparent machen, was Bookings kann — und was (noch) nicht, um Frust in der Pilotphase zu vermeiden.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 10: Risiken -->
-  <section class="slide">
-    <div class="kicker"><span class="dot"></span>Risikomanagement</div>
-    <h2 class="slide-title">Die häufigsten Fallstricke — und wie ich ihnen vorbeuge</h2>
-    <div class="content top">
-      <table>
-        <tr><th>Risiko</th><th>Schwere</th><th>Gegenmaßnahme</th></tr>
-        <tr><td>Geringe Nutzerakzeptanz</td><td><span class="sev high">Hoch</span></td><td>Change Champions, klarer Nutzen-Pitch, Pilot mit sichtbaren Erfolgen zuerst.</td></tr>
-        <tr><td>Datenschutz-Bedenken bei externen Buchungen</td><td><span class="sev high">Hoch</span></td><td>DSB frühzeitig einbinden, Datenfelder minimieren, Aufbewahrungsfristen definieren.</td></tr>
-        <tr><td>Lizenz-/Rollout-Lücken</td><td><span class="sev mid">Mittel</span></td><td>Lizenzaudit vor Kick-off, Beschaffungsprozess parallel anstoßen.</td></tr>
-        <tr><td>Fragmentierte Buchungsseiten je Team</td><td><span class="sev mid">Mittel</span></td><td>Governance-Richtlinie &amp; Namenskonvention, zentrales Template.</td></tr>
-        <tr><td>Support-Team nicht vorbereitet</td><td><span class="sev mid">Mittel</span></td><td>Runbook &amp; Kurzschulung vor jedem Rollout-Schritt, nicht danach.</td></tr>
-        <tr><td>Parallelbetrieb alter Prozesse</td><td><span class="sev low">Niedrig</span></td><td>Klares Abschaltdatum für Altprozess kommunizieren, sobald Pilot stabil ist.</td></tr>
-      </table>
-    </div>
-  </section>
-
-  <!-- 11: Erfolgsmessung -->
-  <section class="slide">
-    <div class="kicker"><span class="dot"></span>Nach dem Rollout</div>
-    <h2 class="slide-title">Adoption ist ein Betriebsthema, kein Projektabschluss</h2>
-    <div class="content top">
-      <div class="grid cols-2">
-        <div class="card"><h3>Laufendes Monitoring</h3><p>Monatliches KPI-Review (Nutzung, No-Shows, Zufriedenheit) mit Fachbereichen und Sponsor.</p></div>
-        <div class="card"><h3>Feedback in Weiterentwicklung</h3><p>Pilot- und Rollout-Feedback fließt in Backlog: weitere Teams, neue Buchungsarten, Automatisierung.</p></div>
-        <div class="card"><h3>Skalierung</h3><p>Erfolgreiche Muster (Templates, Schulungsunterlagen) für weitere Standorte/Bereiche wiederverwenden.</p></div>
-        <div class="card"><h3>Übergabe in den Regelbetrieb</h3><p>Klare Verantwortung: wer betreut Bookings danach operativ — Product Owner, IT-Betrieb oder Fachbereich?</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 12: Zusammenfassung -->
+  <!-- 6: Zusammenfassung -->
   <section class="slide closing">
     <div class="content">
       <div class="kicker" style="justify-content:center;"><span class="dot"></span>Kernbotschaft</div>
       <h1>Rollout heißt<br><span class="grad-text">Menschen, Prozesse, Technik</span> — in dieser Reihenfolge.</h1>
-      <p class="sub" style="margin:0 auto;">Ich würde mit dem Bedarf des Fachbereichs beginnen, Stakeholder von Anfang an einbinden, in einem klar abgegrenzten Piloten lernen — und Adoption danach genauso aktiv managen wie den Go-Live selbst.</p>
+      <div class="trio" style="margin-top:20px; margin-bottom:8px;">
+        <div class="tile"><div class="n">1</div><h3>Menschen vor Technik</h3><p>Bedarf des Fachbereichs zuerst, Tool-Entscheidung danach.</p></div>
+        <div class="tile"><div class="n">2</div><h3>PM/PO von Anfang an</h3><p>Nachbar-Produkte aktiv einbinden statt nachträglich zu korrigieren.</p></div>
+        <div class="tile"><div class="n">3</div><h3>Compliance früh</h3><p>Datenschutz &amp; Betriebsrat parallel zur Technik, nicht am Ende.</p></div>
+      </div>
       <div class="role-pill">Mathias Goerrings · Kandidat für die Rolle Microsoft&nbsp;365 Produktmanager</div>
     </div>
   </section>
@@ -420,7 +208,7 @@
     <button id="nextBtn" aria-label="Weiter">›</button>
   </div>
   <div class="dots" id="dots"></div>
-  <div class="counter" id="counter">1 / 12</div>
+  <div class="counter" id="counter">1 / 6</div>
 </div>
 
 <script>
